@@ -119,5 +119,3 @@ Step 10: Create CloudTrail
 Enable CloudTrail to monitor AWS API activities.
 
 Store logs in an S3 bucket.
-
-Step 12: Deleting the Entir
