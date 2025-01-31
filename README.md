@@ -1,2 +1,2 @@
-# AWS-Three-tier-architecture
+# AWS-Three-tier-architecture-project
 A scalable and secure Three-Tier Architecture deployed on AWS using EC2, ALB, Auto Scaling, RDS, and S3 for high availability and performance.
