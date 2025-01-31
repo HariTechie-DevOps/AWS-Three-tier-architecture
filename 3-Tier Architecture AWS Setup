@@ -1,0 +1,123 @@
+Step 1: Create Two S3 Buckets
+
+S3 Bucket 1: Store web-server & app-server code.
+
+Upload the necessary code files from the local system.
+
+S3 Bucket 2: Store VPC flow logs.
+
+Step 2: Create IAM Role with Policies
+
+Attach the following policies to a new IAM role:
+
+S3 Read Only Access.
+
+SSM Managed Instance Core (for EC2 management).
+
+Step 3: Create VPC, Subnets, IGW, NAT-GW, RT
+
+VPC Setup:
+
+Create a custom VPC.
+
+Add public and private subnets (Web, App, and DB tiers).
+
+Internet Gateway (IGW) & NAT Gateway (NAT-GW):
+
+Attach IGW to public subnets.
+
+Configure NAT-GW for private subnets.
+
+Route Tables (RT):
+
+Associate appropriate routes for public and private subnets.
+
+Enable Auto-assign Public IP for Web-tier public subnets.
+
+Enable VPC Flow Logs and send logs to the S3 bucket.
+
+Step 4: Create Security Groups
+
+External Load Balancer SG → Allow HTTP (80) from 0.0.0.0/0.
+
+Web-Tier SG → Allow HTTP (80) from External LB SG.
+
+Internal Load Balancer SG → Allow HTTP (80) from Web-Tier SG.
+
+App-Tier SG → Allow Port 4000 from Internal LB SG.
+
+DB-Tier SG → Allow MySQL (3306) from App-Tier SG.
+
+Step 5: Create DB Subnet Group & RDS
+
+DB Subnet Group: Select private subnets.
+
+RDS Setup:
+
+Deploy a Multi-AZ RDS instance.
+
+Associate it with the DB subnet group.
+
+Step 6: Create Test App Server, Install Packages, Test Connections
+
+Setup App Server:
+
+Launch an EC2 instance and install dependencies.
+
+Test connectivity to the DB.
+
+Create AMI from App Server.
+
+Create Launch Template using AMI.
+
+Target Group & Internal Load Balancer:
+
+Create a target group.
+
+Deploy an internal load balancer.
+
+Create Auto Scaling Group (ASG).
+
+Configure Nginx:
+
+Edit nginx.conf locally to add Internal-LB-DNS.
+
+Upload modified file to S3.
+
+Step 7: Create Test Web Server, Install Packages, Test Connections
+
+Setup Web Server:
+
+Install Nginx, Node.js (React) & dependencies.
+
+Test connectivity to the App Server.
+
+Create AMI from Web Server.
+
+Create Launch Template using AMI.
+
+Target Group & External Load Balancer:
+
+Create a target group.
+
+Deploy an external load balancer.
+
+Create Auto Scaling Group (ASG).
+
+Step 8: Add External ALB DNS Record in Route 53
+
+Map the External ALB DNS to a custom domain using Route 53.
+
+Step 9: Create CloudWatch Alarms Along with SNS
+
+Set up alarms for critical metrics (CPU, memory, instance failures).
+
+Configure SNS for notifications.
+
+Step 10: Create CloudTrail
+
+Enable CloudTrail to monitor AWS API activities.
+
+Store logs in an S3 bucket.
+
+Step 12: Deleting the Entir
