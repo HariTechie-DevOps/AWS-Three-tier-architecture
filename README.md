@@ -3,7 +3,9 @@
 This project demonstrates the deployment of a scalable, secure, and highly available 3-tier web application on AWS. The 3-tier architecture separates the application into three layers:
 
 1️⃣ Presentation Layer – Handles user requests (Frontend Web Servers)
+
 2️⃣ Application Layer – Processes business logic (Backend EC2 Instances)
+
 3️⃣ Data Layer – Manages storage & databases (Amazon RDS)
 
 This architecture is commonly used by real-world applications such as e-commerce platforms, enterprise applications, and SaaS solutions.
