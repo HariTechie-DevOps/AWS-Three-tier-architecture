@@ -42,6 +42,7 @@ Monitor logs & performance using CloudWatch.
 
 # 📌 Project Outputs:
 After deployment, you’ll have:
+
 ✅ A scalable web application accessible via ALB URL.
 
 ✅ A private RDS database securely storing application data.
